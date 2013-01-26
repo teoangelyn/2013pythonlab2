@@ -9,7 +9,9 @@ import datetime
 try:
     time = "TIME: HH:MM AM"
     date = datetime.date.today()
-
+    time = datetime.datetime.now()
+    
+    
     # open votes file to read
     infile = open("VOTES.DAT", "r")
 
@@ -66,21 +68,21 @@ try:
     outfile = open("RESULTS.TXT", "w")
     
     outfile.write("DATE: " + date.strftime("%d/%m/%Y"))
-    outfile.write("{0:>34}".format(time) +"\n")
+    outfile.write("{0:>34}".format(time.strftime("%H:%M %p") +"\n"))
     outfile.write("RESULTS OF THE 2013 PUNGGOL EAST SMC BY ELECTION" + "\n")
     outfile.write("WARD                PARTY      #VOTES    %VOTES" + "\n")
     outfile.write('--------------------------------------------------' + "\n")
     outfile.write("PUNGGOL EAST SMC")
-    outfile.write("    PAP        " + str(papcount) + "    " + "{0:.2f}".format(pappercentage) + "\n")
-    outfile.write("                    RP         " + "{0:.5s}".format(str(rpcount)) + "    " + "{0:.2f}".format(rppercentage) + "\n")
-    outfile.write("                    SDA        " + "{0:.5s}".format(str(sdacount)) + "    " + "{0:.2f}".format(sdapercentage) + "\n")
-    outfile.write("                    WP         " + "{0:.5s}".format(str(wpcount)) + "    " + "{0:.2f}".format(wppercentage) + "\n")
+    outfile.write("    PAP        " + str(papcount) + "    " + "{0:>4.2f}".format(pappercentage) + "\n")
+    outfile.write("                    RP         " + "{0:>5s}".format(str(rpcount)) + "    " + "{0:>4.2f}".format(rppercentage) + "\n")
+    outfile.write("                    SDA        " + "{0:>5s}".format(str(sdacount)) + "    " + "{0:>4.2f}".format(sdapercentage) + "\n")
+    outfile.write("                    WP         " + "{0:>5s}".format(str(wpcount)) + "    " + "{0:>4.2f}".format(wppercentage) + "\n")
 
     outfile.write('--------------------------------------------------' + "\n")
     outfile.write('WINNER: ' + winner + "\n")
     outfile.write('TOTAL VOTES: ' + str(total) + "\n")
     outfile.write('#SPOILTVOTES: ' + str(spoiltvotes) + "\n")
-    outfile.write('%SPOILTVOTES: ' + str(spoiltpercentage) + "\n")
+    outfile.write('%SPOILTVOTES: ' + "{0:.2f}".format(spoiltpercentage) + "\n")
 
   
     outfile.close()
